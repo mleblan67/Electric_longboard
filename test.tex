@@ -1,0 +1,145 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{calendar}
+\usepackage[final]{pdfpages}
+\title{Electric Skateboard}
+
+\author{Max Leblang, Elijah Tolton, Jamez Lynch}
+\date{October 2020}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+    \section*{Executive Summary}
+\end{center}
+
+For our Engineering capstone project, we will be building an electric powered longboard that's controlled by a phone app. This system will implement machine learning to increase intelligence, functionality, and stability.
+
+To construct the longboard, we will first have to build the physical longboard system with motor and braking system, testing to see if adaptive baking is something that is plausible and efficient to implement. Next, we'll build the app to control the board, either for iPhone using Xcode or Android using OSCLayout. We will implement two machine learning features: adaptive braking and object detection.
+
+Our goal is to have all of our board assembled by winter break. Then, implement the motor and braking systems on the board by the beginning of quarter three. By the beginning of quarter four, we'll have a fully working app to control the longboard, and the basics of our follow feature. By the end of the year, we'll have finished the follow feature and implemented the smart braking model to fully complete the baord.
+
+\tableofcontents
+
+\section{Introduction}
+
+\subsection{Context}
+In the beginning, humans utilized their feet to travel places. Next, they realized that they could ride horses, making travelling easier and faster. Soon, the car was introduced, making travelling even easier and faster, and less expensive and more efficient, as humans no longer had to deal with hungry and tired horses. Today, we strive to make transportation as easy and efficient as possible, making transportation more accessible and smarter.
+\subsection{Background}
+Being high school students, especially in such a small, connected city, we love quick and easy ways to get places. Also, in a world where the environment is deteriorating and fossil fuels burned by cars pollute the atmosphere, greener transportation options have increased in popularity. Bikes, skateboards, scooters, and hover-boards surround our lives. This is why we've decided to make an electric powered longboard prioritizing these three things:
+\begin{itemize}
+  \item Fast and Efficient
+  \item Easy
+  \item Fun
+  \item Green
+\end{itemize}
+
+\section{Objectives}
+\subsection{Fast, Easy, and Efficient}
+Longboards, pennyboards, and skateboards have recently become very popular, especially amongst teens. This is due to their relatively small size which allows them to be easily grabbed and used. This longboard will be something that someone can just grab from their garage, put on the ground, and ride. By powering the longboard with motors, we can make travel faster, as an electric powered longboard can travel up atleast 20 mph. Finally, implementing a computer and machine learning will make riding easier, as increased stability will allow beginners to ride the board with ease.
+\subsection{Green}
+The electric powered transportation industry has grown vastly during the past decade in order to combat the enormous carbon footprint that comes from driving gas powered cars. This longboard will be a viable and green alternative to making quick trips in a car. We will implement regenerative braking, which will allow for braking to charge the battery and making it last longer, thus requiring less charging.
+\subsection{Fun}
+In an age where so many modes of transportation are available, why shouldn't getting from point A to point B be as fun as possible. As Ralph Waldo Emerson once said, "It's not the Destination, it's the journey." Riding skateboards and longboards has become a pass time that many people enjoy. This longboard will be fun to ride. Riding around fast on a longboard is fun and exhilarating, and the added security of control and stability will make this more enjoyable. Also, with the added follow and call feature, you can focus on other things without worrying about carrying around the longboard, and when you're ready to leave, you can call it to you, jump on, and ride off!
+
+\section{Planning}
+\subsection{Origin of the Idea}
+When we first started thinking about what to build for our Capstone project, we wanted some that implemented machine learning or AI. This was important to us because it would give our project intelligence and utility beyond anything we could build without ML. Also, ML is a fast growing field, and learning about it now will give us a leg up in college and the technology industry. Next, we decided we wanted some form of transportation involved. We started off thinking about doing a cooler robot that could ride around and deliver drinks. However, we decided that the impact and usability of a cooler bot was significantly less than an electric powered skateboard, which still implemented the same concept of controlling a wheel powered machine.
+\subsection{Final project}
+Our final plan is to build an eclectic powered longboard that's powered by two motors in the back. The longboard will also have a regenerative braking system which utilizes a circuit that switches the polarity of the motors when we want to brake, allowing us to control how much force the brakes apply. Also, we will develop a phone app to control the speed and braking of the longboard. Finally, we will implement two ML aspects to the board for increased functionality:
+\begin{itemize}
+  \item Follow and Call using \textbf{object detection}. We will mount cameras to the board, and train a model to identify shoes. This will allow the model to follow a user's shoes, and drive up next to them when they're ready to go.
+  \item Adaptive Braking using \textbf{reinforcement learning}. We will create a virtual model of the board on a computer and train a \textbf{Q-Learning model} to maximize smooth and stable braking. We will then upload this model to the longboard to utilize.
+\end{itemize}
+
+\section{Deliverables}
+\subsection{What will we turn in}
+\begin{itemize}
+    \item A working electric longboard
+    \item A working phone app
+    \item Operating instructions
+    \item Really good commented code
+    \item CAD designs
+    \item Circuit diagrams and PCB files(Fritzing)
+    \item ML model analysis with test procedures
+\end{itemize}
+\subsection{Materials}
+For this project, we will need a raspberry pi, accelerometer and gyrometer, and camera for the pi. Also, we will need the 3D printers to print out our gear system, and the laser cutter to laser cut our motor mount. Finally, we will need the CNC mill to cut out our PCB.
+\section{Methodology}
+\subsection{Approach to electric longboard}
+Our method to building the longboard is to use rear wheel drive by mounting two motors to the back wheels using a laser cut frame. We also need to decide whether we're going to implement an electrical braking system or a mechanical braking system. To make the decision, we'll calculate the necessary stopping power needed for the motors, and the most efficient way to stop.
+\subsection{Approach to Follow and Call feature}
+Our method to implementing the follow and call feature is to first add a front camera to the longboard. Also, we will attach a Coral USB accelerator to speed up the TensorFlow object detection. Next, we will train our own TensorFlow Lite object detection model on pictures of shoes. \cite{Trainown} The dataset we're planning to use is the University of Texas' Zappos50k dataset \cite{finegrained} \cite{semjitter}, but we may have to find supplemental pictures. Finally, we'll feed the image detection data to the motors so the motor can follow the sneakers.
+\subsection{Approach to adaptive braking}
+Our method to implementing adaptive braking into our longboard is to train a reinforcement learning model. To do this, we will first create a virtual physics model of the skateboard with a pole on it on a computer with a powerful GPU. We will then give control of the braking system to the model as \textbf{outputs}, and the board and wheel velocities as \textbf{inputs}. This model will factor in velocities and the friction coefficient to calculate the most stable way to brake.
+\begin{figure}[ht]
+\centering
+\includegraphics[scale=.37]{abs.jpg}
+\caption{Friction coefficient stability zone}
+\label{fig}
+\end{figure}
+
+The "rules of the game" that we will define is that the model wins when the velocity of the board is 0, and the pole has remained in our leaning/falling threshold(e.g. the pole can't fall past a 10° tilt). We will then upload this model to the pi, and run it using TensorFlow.
+\subsection{Skills}
+For this project, the most important and complex skill we will need to learn is machine learning, specifically training an object detection model and a reinforcement learning model. We have found a good amount of online tutorials, Github repositories, and Youtube videos that should help us get a good understanding of how we should build these models, and how we can tune it.
+
+\section{Impact}
+This project is designed to be "fast, easy, green, and fun." Our goal is to design a project that will be fun while progressing our knowledge in a growing field that will inevitably change the world. The concept of machine learning and AI is just starting and learning to understand and control is going to be the future of engineering and science in general. We are making this for youth to have a fast way to travel and have fun. It is designed to be easy to use and the modular functions will allow it to have many uses. This will make it accessible to a large group but is mainly focused to a youthful audience.
+\section{Project Management}
+
+\includepdf[pages=-]{JaK.pdf}
+
+\section{Budget}
+The main components to making our longboard are the board itself, the motor, the battery, and the pi. As most of the attachments will be done using laser-cutted and 3D-printed material the components we will need to purchase are the board, the motor, and the battery. Additionally, the use of a Coral usb accelerator for our Pi might be useful. This is not a necessary component but it would greatly speed up the computation of our machine learning. There is a possibility that out model becomes large enough for the board that it might become so slow that it has no practical application. If this happens the use of the usb accelerator will become a necessity.
+
+\begin{center}
+\begin{tabular}{|c|c|}
+    \hline
+    Part & Price(\$)  \\
+    \hline
+    Motor x 2 & 60 each \\
+    \hline
+    Batteries x 2 & 56.99\\
+    \hline
+    Wheels & 20-25\\
+    \hline
+    Deck & 40-50\\
+    \hline
+    Trucks & 40-50 \\
+    \hline
+    Total & 291.99\\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsection{Board}
+We have lots of options when it comes to the board. Above, it is listed it as if we bought each component individually to allow ourselves customize it. This would allow us to be more selective in our board and probably lead to a higher quality board; however, it is more expensive to do it this way and we could also buy a cheaper pre-made board. These go for around fifty to sixty dollars so that would be a significant cost saver. The only issue with this is that we need fairly large wheels of a specific style for our board. We need flywheel style skateboard wheels because these have slots running on the interior of the wheel already that we can use to easily attach the gear to drive our belt along. This means that we would likely have to buy wheels separate from a pre-made board anyways in which case we would probably shave very little, if any, cost. 
+\subsection{Motor \& Battery}
+The motor and battery are probably the two most important components on the board. They are what is responsible with actually powering and driving the board. As a result, it is important to be selective and pick the right battery for the right motor. To start we researched high powered DC brushless motors. These motors are measure in kv which is a measurement of revolution per second per volt. This means that the higher a kv rating a motor has, the faster it will spin. This in turn also means it will have a lower torque. In order to maintain a decent torque and a decent rpm we decided to go with a fairly middle-ground kv rating of 140kv. This motor has a max power of 2450 Watts so we needed to make sure to pick a battery that can support it. We decided to use Lipo batteries to save weight, get lots of power, and make it easy to charge them. To determine what batteries we needed we used this equation which shows the max power(in Watts) provided by a battery:
+
+\begin{equation}
+W = DischargeRating * Capacity(A/h) * Voltage
+\end{equation}
+
+After decided that we wanted to use a motor per each rear wheel we determined that we need approximately 5000 watts to be provided by our batteries. In order to do this we decided to use two four cell Lipo batteries. Each of these provides 14.8 volts and has a capacity of 3300 mAh. Using these batteries we can achieve just shy of the maximum wattage possible for out motors. This system will allow us to maximize torque, power, and speed while also keeping our cost as low as possible.
+
+
+\section{Risks and Countermeasures}
+One of the main risks is that the model trains wrong or corrupts. This will be hard to detect because of the extensive training required for our model. This means the only real way to see if it works is to test it out on the actual longboard. For the braking component this will be a little risky but we can minimize the risk by placing weight on the board instead of a person. We also will wear protective gear when testing it out initially in case the brakes or other machine learning components decide to kill us.
+\section{Team Qualification}
+\subsection{Max}
+Max has the most programming experience with Python, and the most experience with machine learning models (He took the \textbf{Codecademy: Intro to Machine Learning course} \cite{codecademy}). Also, Max has the most experience designing and manufacturing PCBs, which will be useful for our motor circuit.
+\subsection{Elijah}
+Elijah has more experience in CAD and 3D design. He is good at looking through and editing code and already written. He also is most experienced in the hands on and physical portion of the project. He is good at fixing things that go wrong and solving the little issues that inevitably pop up in a project of this scale.
+\subsection{Jamez}
+Jamez has a good amount of a experienced with CAD and 3D design. He is very experienced and comfortable with reaching for greater opportunity's. He has a greater knowledge on long boards and understands the price points and difference types of boards that are out there. Jamez will help with making sure the group can stay on budget with the materials we acquire and will try to get a sponsorship from any company that is interested.
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+
+\end{document}
